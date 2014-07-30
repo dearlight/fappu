@@ -25,7 +25,7 @@ var SidebarThumb = React.createClass({
     var classes = Object.keys(classNames).filter(key => classNames[key]).join(' ');
     var style={backgroundImage: 'url(' + this.props.thumb + ')'};
     return <label ref="label" className={classes} style={style}>
-      <input ref="input" type="radio" name="thumb" checked={checked}  onChange={this.checkSelected}/>
+      <input ref="input" type="radio" name="thumb" autoFocus={checked} checked={checked}  onChange={this.checkSelected}/>
     </label>
   }
 });

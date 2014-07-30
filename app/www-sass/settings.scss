@@ -1,0 +1,19 @@
+.page.settings {
+  padding: 3em;
+  
+  input {
+    border:none;
+  }
+  button {
+    border:none;
+    padding: 0.3em;
+    background: $primary-grey;
+    color: $primary-grey-text;
+  }
+  button:focus, button:hover {
+    border:none;
+    padding: 0.3em;
+    background: $light-grey;
+    color: $light-grey-text;
+  }
+}

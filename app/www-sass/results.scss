@@ -1,0 +1,21 @@
+.page.results {
+  overflow: auto;
+  display: flex;
+  flex-direction: row;
+  
+  #results {
+    flex-grow: 1;
+    height: 100%;
+  }
+  
+  form {
+    display: inline-block;
+  }
+  
+  button {
+    background: inherit;
+    color: inherit;
+    font-size: inherit;
+    border:none;
+  }
+}

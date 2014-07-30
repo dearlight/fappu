@@ -4,29 +4,40 @@
 
 var React = require('react');
 var Fappu = require('./app');
-var hyperquest = require('hyperquest');
-var es = require('event-stream');
 
-console.log('rendering')
+window.addEventListener('error', function (e) {
+  var err = e.error;
+  console.log(err.message)
+  console.log(err.stack)
+})
 
-var buffer = '';
-hyperquest('https://api.fakku.net/manga/right-now-while-cleaning-the-pool/read')
-  .on('data', data => buffer += data)
-  .on('end', _ => {
-    var data = JSON.parse(buffer);
-    var content_pages = data.content.content_pages
-    var pages = new Array(content_pages);
-    for (var i = 0; i < content_pages; i++) {
-      pages[i] = data.pages[i + 1];
+var states = [{
+    page: 'viewer',
+    data: {
+      url: 'https://api.fakku.net/manga/right-now-while-cleaning-the-pool/read'
     }
-    var location = {
-      page: 'viewer',
-      data: {
-        pages: pages
-      }
-    };
-    React.renderComponent(
-      <Fappu location={location} />,
-      document.body
-    )
-  });
+  }, {page:'tags'}];
+function pushState(state, clear) {
+  if (clear) {
+    states = [];
+  }
+  states.push(state);
+  render();
+  console.log('PUSHING', state.page);
+}
+function popState(state) {
+  states.pop();
+  render();
+  console.log('POPPING', state.page);
+}
+require('ipc').on('pushState', pushState);
+
+function render() {
+  var location = states[states.length - 1];
+  React.renderComponent(
+    <Fappu location={location} stateManager={{push:pushState,pop:popState}} />,
+    document.body
+  )
+}
+
+render();

@@ -1,0 +1,40 @@
+header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  background-color: $primary-red;
+  text-align: right;
+  color: white;
+  background-image: url('assets/logo.png');
+  background-repeat: no-repeat;
+  background-position: 10px 6px;
+  padding-right: 10px;
+  font-size: 32px;
+  height: 5px;
+  overflow: hidden;
+  transition: height 0.3s, padding 0.3s;
+  
+  &:hover {
+    height: 50px;
+  }
+  nav {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+  }
+  nav button {
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 10px;
+    font-size: inherit;
+    height: 100%;
+    background: inherit;
+    color: inherit;
+    border: none;
+  }
+  nav button:hover, nav button:focus {
+    outline: none;
+    background: $light-red;
+  }
+}

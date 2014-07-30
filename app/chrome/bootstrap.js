@@ -3,14 +3,6 @@ var BrowserWindow = require('browser-window');  // Module to create native brows
 
 require('./menu').create(app);
 
-app.on('open-url', function (e) {
-  console.log(JSON.stringify(e, null, 2))
-  process.exit(2);
-})
-app.on('open-file', function (e) {
-  console.log(JSON.stringify(e, null, 2))
-  process.exit(3);
-})
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the javascript object is GCed.
@@ -18,8 +10,7 @@ var mainWindow = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function() {
-  if (process.platform != 'darwin')
-    app.quit();
+  app.quit();
 });
 
 //require('./DATABASE/config.js').initDatabase(null, function (err, db) {

@@ -1,0 +1,15 @@
+.page.tags {
+  text-align: center;
+  overflow: auto;
+  
+  form {
+    display: inline-block;
+  }
+  button {
+    margin: 1em;
+    background: inherit;
+    font-size: inherit;
+    border: none;
+    color: inherit;
+  }
+}

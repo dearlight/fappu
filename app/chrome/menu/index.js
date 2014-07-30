@@ -1,7 +1,7 @@
 var BrowserWindow = require('browser-window');
 var Menu = require('menu');
 
-exports.create = function create(app) {
+exports.create = function create(app, state_manager) {
   var template = [
     {
       label: 'Atom Shell',
@@ -26,6 +26,10 @@ exports.create = function create(app) {
         {
           label: 'Show All',
           selector: 'unhideAllApplications:'
+        },
+        {
+          label: 'Settings',
+          click: function () { BrowserWindow.getFocusedWindow().send('pushState', {'page':'settings'} ); }
         },
         {
           type: 'separator'

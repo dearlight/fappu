@@ -1,3 +1,5 @@
+@import 'colors';
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,43 +13,15 @@ table, .fappu {
 html, body {
   overflow: hidden;
   width: 100%; height: 100%;
-  background: black;
 }
 body {
   font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 }
-header {
-  position: fixed;
-  z-index: 1000;
-  width: 100%;
-  background-color: rgb(163, 0, 16);
-  text-align: right;
-  color: white;
-  background-image: url('assets/logo.png');
-  background-repeat: no-repeat;
-  background-position: 10px 6px;
-  padding-right: 10px;
-  font-size: 32px;
-  height: 5px;
-  overflow: hidden;
-  transition: height 0.3s, padding 0.3s;
-}
-header:hover {
-  height: 50px;
-}
-nav {
-  height: 100%;
-  display: flex;
-  flex-direction: row-reverse;
-}
-nav a {
-  cursor: pointer;
-  padding: 10px;
-  margin-left: 10px;
-}
-nav a:hover, nav a:focus {
-  background: rgb(209, 127, 144);
-}
+@import 'header';
+@import 'tags';
+@import 'settings';
+@import 'results';
+
 .page {
   height: 100%;
   width: 100%;
@@ -100,22 +74,35 @@ nav a:hover, nav a:focus {
   background-size: contain;
 }
 
+.back-button {
+  display: inline-block;
+  background: inherit;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  width: 100%;
+  height: 100%;
+}
+
 #sidebar-tools {
   display: flex;
   flex-direction: column;
+  height: 100%;
+  min-width: 2ex;
+  text-align: center;
 }
 
-#sidebar-tools button {
+#sidebar-tools form {
   flex-grow: 1;
-  color: #555;
-  background: black;
+  color: $primary-grey;
+  background: $primary-grey-text;
   cursor: pointer;
   padding: 3px;
   border: none;
   transition: background 0.1s, color 0.1s;
 }
-#sidebar-tools button:focus, #parent button:hover {
-  background: #777;
-  color: #222;
+.back-button button:focus, #parent button:hover {
+  background: $light-grey;
+  color: $light-grey-text;
   outline: none;
 }

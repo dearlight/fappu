@@ -2,12 +2,32 @@
  * @jsx React.DOM
  */
 
+var hyperquest = require('hyperquest');
+var es = require('event-stream');
 var React = require('react');
 var Sidebar = require('./Sidebar');
+var BackButton = require('../../COMMON/BackButton');
 
 var Viewer = React.createClass({
   getInitialState: function() {
-    return {image: null};
+    return {image: null,pages: []};
+  },
+  componentDidMount: function () {
+    var buffer = '';
+    hyperquest(this.props.url)
+      .on('data', data => buffer += data)
+      .on('end', _ => {
+        var data = JSON.parse(buffer);
+        var content_pages = data.content.content_pages
+        var pages = new Array(content_pages);
+        for (var i = 0; i < content_pages; i++) {
+          pages[i] = data.pages[i + 1];
+        }
+        this.setState({
+          pages: pages
+        });
+        if (pages.length) this.show(pages[0])
+      })
   },
   show: function (page) {
     this.setState({image: page.image});
@@ -23,11 +43,9 @@ var Viewer = React.createClass({
     }
     return <div className="page viewer">
       <div id="sidebar-tools">
-        <button>{'\u2605'}</button>
-        {parent}
-        <button>{'\u25C4'}</button>
+        <BackButton stateManager={this.props.stateManager}/>
       </div>
-      <Sidebar pages={this.props.pages} onSelect={this.show} />
+      <Sidebar pages={this.state.pages} onSelect={this.show} />
       <div id="viewer-content" style={style} />
     </div>
   }
