@@ -17,5 +17,6 @@ npm install
 ## Running
 
 ```sh
+npm run build
 npm start
 ```
