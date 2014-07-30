@@ -1,0 +1,7 @@
+.node
+node_modules
+.swp
+.DS_Store
+/binaries
+/build
+/.sass-cache

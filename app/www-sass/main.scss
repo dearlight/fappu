@@ -1,0 +1,121 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  border-spacing: 0;
+}
+table, .fappu {
+  width: 100%;
+  height: 100%;
+}
+html, body {
+  overflow: hidden;
+  width: 100%; height: 100%;
+  background: black;
+}
+body {
+  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+}
+header {
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  background-color: rgb(163, 0, 16);
+  text-align: right;
+  color: white;
+  background-image: url('assets/logo.png');
+  background-repeat: no-repeat;
+  background-position: 10px 6px;
+  padding-right: 10px;
+  font-size: 32px;
+  height: 5px;
+  overflow: hidden;
+  transition: height 0.3s, padding 0.3s;
+}
+header:hover {
+  height: 50px;
+}
+nav {
+  height: 100%;
+  display: flex;
+  flex-direction: row-reverse;
+}
+nav a {
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 10px;
+}
+nav a:hover, nav a:focus {
+  background: rgb(209, 127, 144);
+}
+.page {
+  height: 100%;
+  width: 100%;
+  padding-top: 5px;
+}
+
+.viewer {
+  background: black;
+  display: flex;
+}
+.sidebar {
+  height: 100%;
+  overflow: auto;
+  overflow-x: hidden;
+  width: 140px;
+  text-align: center;
+}
+.sidebar-thumb {
+  position: relative;
+  display: block;
+  cursor: pointer;
+  height: 196px;
+  width: 140px;
+  border: 5px solid transparent;
+  background-color: black;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.sidebar-thumb input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 196px;
+  width: 140px;
+  opacity: 0;
+  z-index: -2;
+}
+.sidebar-thumb.selected {
+  border-color: #555;
+}
+
+#viewer-content {
+  flex-grow: 1;
+  background-color: black;
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  vertical-align: middle;
+  background-size: contain;
+}
+
+#sidebar-tools {
+  display: flex;
+  flex-direction: column;
+}
+
+#sidebar-tools button {
+  flex-grow: 1;
+  color: #555;
+  background: black;
+  cursor: pointer;
+  padding: 3px;
+  border: none;
+  transition: background 0.1s, color 0.1s;
+}
+#sidebar-tools button:focus, #parent button:hover {
+  background: #777;
+  color: #222;
+  outline: none;
+}

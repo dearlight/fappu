@@ -1,0 +1,12 @@
+<!DOCTYPE HTML>
+<title>Fakku!</title>
+<link rel=stylesheet href=style.css>
+
+<script>
+  window.addEventListener('beforeunload', function(e) {
+    console.log('Exiting page not allowed')
+    e.preventDefault();
+    return false;
+  });
+</script>
+<script src=../bundle.js></script>
