@@ -9,18 +9,18 @@ var Sidebar = React.createClass({
   getInitialState: function () {
     return {selected: 0};
   },
-  select: function (page, i) {
+  select: function (i) {
     this.setState({selected:i});
-    this.props.onSelect(page)
+    this.props.onSelect(i)
   },
   render: function() {
     return <form className="sidebar">{
       this.props.pages.map(
         (page,i) => <SidebarThumb
           selected={this.state.selected === i}
-          key={page.thumb}
+          key={i}
           thumb={page.thumb}
-          onSelect={_=>this.select(page, i)} />
+          onSelect={_=>this.select(i)} />
       )
     }</form>
   }

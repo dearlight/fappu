@@ -15,6 +15,9 @@ module.exports = function(grunt) {
           'build/bundle.js': ['app/www-jsx/**.js']
         },
         options: {
+          bundleOptions: {
+            debug: true
+          },
           external: ['ipc', 'remote'],
           browserifyOptions: {
             entry: 'app/www-jsx/main.js'

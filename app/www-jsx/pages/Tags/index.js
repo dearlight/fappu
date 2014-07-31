@@ -11,6 +11,9 @@ var Tags = React.createClass({
   getInitialState: function() {
     return {tags: []};
   },
+  componentWillReceiveProps: function () {
+    this.componentDidMount();
+  },
   componentDidMount: function () {
     var buffer = '';
     hyperquest('https://api.fakku.net/tags')
@@ -60,7 +63,7 @@ var Tags = React.createClass({
   },
   render: function() {
     return <div className="page tags">
-      {this.state.tags.map(
+      {this.state.tags.sort((a, b) => a.tag_name < b.tag_name ? -1 : 1).map(
         tag => <TagButton key={tag.tag_name} stateManager={this.props.stateManager} tag={tag} />
       )}
     </div>

@@ -19,6 +19,12 @@ var ContentPreview = React.createClass({
         url: this.props.content.content_url.replace('www.fakku', 'api.fakku')+'/read'
       }
     };
+    var goto_related_state = {
+      page: 'results',
+      data: {
+        url: this.props.content.content_url.replace('www.fakku', 'api.fakku')+'/related'
+      }
+    };
     return <div className="content-preview" onSubmit={this.submit}>
       <StateButton className="content-image"
             stateManager={this.props.stateManager}
@@ -30,6 +36,12 @@ var ContentPreview = React.createClass({
             stateManager={this.props.stateManager}
             state={goto_viewer_state}>
             {content.content_name}
+        </StateButton>
+        <br/>
+        <StateButton className="content-related"
+            stateManager={this.props.stateManager}
+            state={goto_related_state}>
+            [related content]
         </StateButton>
         <hr />
         {content.content_description}

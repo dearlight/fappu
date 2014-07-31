@@ -22,7 +22,7 @@ app.on('window-all-closed', function() {
     mainWindow = new BrowserWindow({'node-integration': 'none'});
   
     // and load the index.html of the app.
-    mainWindow.loadUrl('file://' + __dirname + '/www/index.html');
+    mainWindow.loadUrl('file://' + __dirname + '/www/index.html#debug=*');
     
     mainWindow.webContents.on('did-finish-load', function() {
       //mainWindow.webContents.send('database', db);

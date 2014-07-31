@@ -19,5 +19,8 @@
     "start": "node runner.js",
     "build": "grunt --verbose",
     "preinstall": "node -e 'process.exit(0)'"
+  },
+  "dependencies": {
+    "debug": "^1.0.4"
   }
 }

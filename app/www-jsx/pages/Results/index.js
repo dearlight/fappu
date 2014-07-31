@@ -12,17 +12,22 @@ var Results = React.createClass({
   getInitialState: function() {
     return {results: [], page: 1};
   },
-  componentDidMount: function () {
+  refresh: function () {
     var buffer = '';
     var url = this.props.url + '/page/' + this.state.page;
     console.error('URL: ' + url)
     hyperquest(url)
       .on('data', data => buffer += data)
+      .on('error', err => {
+        alert(err.message || err);
+        this.props.stateManager.pop()
+      })
       .on('end', _ => {
         var data = JSON.parse(buffer);
         if (data.error) {
           alert(data.error);
         }
+        data.content = data.content || data.related;
         if (!data.content || data.error) {
           this.props.stateManager.pop();
           return;
@@ -30,7 +35,6 @@ var Results = React.createClass({
         var todo = data.content.length;
         var results = [];
         var next = (err, content) => {
-          console.error('NEXT'+todo+' '+content.content_name)
           todo--;
           if (err) {
             console.error(err)
@@ -60,6 +64,13 @@ var Results = React.createClass({
           img.src = content.content_images.cover;
         });
       })
+  },
+  componentDidUpdate: function (prevProps) {
+    console.error('----------', this.props.url, prevProps.url)
+    if (this.props.url !== prevProps.url) this.refresh();
+  },
+  componentDidMount: function () {
+    this.refresh();
   },
   render: function() {
     return <div className="page results">

@@ -8,9 +8,25 @@ var React = require('react');
 var Sidebar = require('./Sidebar');
 var BackButton = require('../../COMMON/BackButton');
 
+var logger = require('debug')('viewer');
+
 var Viewer = React.createClass({
   getInitialState: function() {
-    return {image: null,pages: []};
+    return {index:0,pages: []};
+  },
+  componentWillReceiveProps: function () {
+    this.componentDidMount();
+  },
+  handleKeyDown: function (e) {
+    var key = e.keyCode || e.which;
+    // [wa]
+    if (key === 0x57 || key === 0x41) {
+      this.show(this.state.index-1)
+    }
+    // [sd] + sp
+    if (key === 0x53 || key === 0x44 || key === 0x20) {
+      this.show(this.state.index+1)
+    }
   },
   componentDidMount: function () {
     var buffer = '';
@@ -33,26 +49,23 @@ var Viewer = React.createClass({
         this.setState({
           pages: pages
         });
-        if (pages.length) this.show(pages[0])
+        if (pages.length) this.show(0)
       })
   },
-  show: function (page) {
-    this.setState({image: page.image});
+  show: function (index) {
+    if (index >= 0 && this.state.pages.length > index) {
+      this.setState({index: index});
+    }
   },
   render: function() {
     var style = {};
-    if (this.state.image) {
-      style.backgroundImage = 'url(' + this.state.image + ')';
-    }
-    var parent;
-    if (this.props.parent) {
-      parent = <button>{'\u2B07'}</button>
-    }
+    var showing_page = this.state.pages[this.state.index];
+    if (showing_page) style.backgroundImage = 'url(' + showing_page.image + ')';
     return <div className="page viewer">
       <div id="sidebar-tools">
         <BackButton stateManager={this.props.stateManager}/>
       </div>
-      <Sidebar pages={this.state.pages} onSelect={this.show} />
+      <Sidebar pages={this.state.pages} onSelect={i=>this.show(i)} />
       <div id="viewer-content" style={style} />
     </div>
   }
