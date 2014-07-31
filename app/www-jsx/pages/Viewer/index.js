@@ -18,6 +18,13 @@ var Viewer = React.createClass({
       .on('data', data => buffer += data)
       .on('end', _ => {
         var data = JSON.parse(buffer);
+        if (data.error) {
+          alert(data.error);
+        }
+        if (!data.content || data.error) {
+          this.props.stateManager.pop();
+          return;
+        }
         var content_pages = data.content.content_pages
         var pages = new Array(content_pages);
         for (var i = 0; i < content_pages; i++) {

@@ -17,6 +17,13 @@ var Tags = React.createClass({
       .on('data', data => buffer += data)
       .on('end', _ => {
         var data = JSON.parse(buffer);
+        if (data.error) {
+          alert(data.error);
+        }
+        if (!data.content || data.error) {
+          this.props.stateManager.pop();
+          return;
+        }
         var todo = data.tags.length;
         var tags = [];
         var next = (err, tag) => {

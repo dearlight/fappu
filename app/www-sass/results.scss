@@ -6,6 +6,12 @@
   #results {
     flex-grow: 1;
     height: 100%;
+    vertical-align: top;
+    
+    .content-preview {
+      margin: 1em;
+      width: 200px;
+    }
   }
   
   form {

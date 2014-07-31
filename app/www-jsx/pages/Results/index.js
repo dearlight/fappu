@@ -20,7 +20,13 @@ var Results = React.createClass({
       .on('data', data => buffer += data)
       .on('end', _ => {
         var data = JSON.parse(buffer);
-        console.error(JSON.stringify(data,null,2))
+        if (data.error) {
+          alert(data.error);
+        }
+        if (!data.content || data.error) {
+          this.props.stateManager.pop();
+          return;
+        }
         var todo = data.content.length;
         var results = [];
         var next = (err, content) => {
