@@ -20,7 +20,7 @@ var Tags = React.createClass({
         if (data.error) {
           alert(data.error);
         }
-        if (!data.content || data.error) {
+        if (!data.tags || data.error) {
           this.props.stateManager.pop();
           return;
         }

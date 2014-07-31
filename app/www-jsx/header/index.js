@@ -3,7 +3,7 @@
  */
 
 var React = require('react');
-var StateButton = require('./StateButton');
+var StateButton = require('../Common/StateButton');
 var SearchField = require('./SearchField');
 
 var Header = React.createClass({

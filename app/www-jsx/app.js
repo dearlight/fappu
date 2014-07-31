@@ -11,8 +11,7 @@ var Header = require('./header');
 
 var Fappu = React.createClass({
   render: function() {
-    console.log('RENDERING: '+this.props.location.page)
-    console.log(JSON.stringify(this.props.location, null, 2))
+    console.log('RENDERING: '+JSON.stringify(this.props.location, null, 2))
     if (this.props.location.page === 'viewer') {
       page = <Viewer
         stateManager={this.props.stateManager}

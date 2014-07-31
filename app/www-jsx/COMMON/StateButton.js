@@ -10,7 +10,7 @@ var StateButton = React.createClass({
     e.preventDefault();
   },
   render: function() {
-    return <form onSubmit={this.submit}>
+    return <form className={this.props.className} type="button" onSubmit={this.submit}>
       <button>{this.props.children}</button>
     </form>
   }

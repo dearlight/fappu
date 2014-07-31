@@ -11,24 +11,19 @@ window.addEventListener('error', function (e) {
   console.log(err.stack)
 })
 
-var states = [{
-    page: 'viewer',
-    data: {
-      url: 'https://api.fakku.net/manga/right-now-while-cleaning-the-pool/read'
-    }
-  }, {page:'tags'}];
+var states = [{page:'tags'}];
 function pushState(state, clear) {
   if (clear) {
     states = [];
   }
   states.push(state);
   render();
-  console.log('PUSHING', state.page);
+  console.log('PUSHING', JSON.stringify(state, null, 2));
 }
-function popState(state) {
-  states.pop();
+function popState() {
+  var state = states.pop();
   render();
-  console.log('POPPING', state.page);
+  if (state) console.log('POPPING', JSON.stringify(state, null, 2));
 }
 require('ipc').on('pushState', pushState);
 
